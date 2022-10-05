@@ -1,0 +1,22 @@
+{% extends 'main.html' %}
+{% block body %}
+{% include 'header.html' %}
+<div class="w-full">
+        <h1 class="text-5xl font-semibold text-black text-center m-6">คำถาม</h1>
+        <div class="grid grid-cols-2 gap-4 m-4">
+            {% for q in questions %}
+            <div class="w-full bg-black rounded-md">
+                <p class="text-white text-3xl m-3">{{ q.title }}</p>
+                <p class="text-white m-3">{{ q.detail }}</p>
+                <form action="detail/{{ q.id }}" method="post">
+                    {% csrf_token %}
+                    <button class="bg-blue-600 hover:bg-white hover:text-blue-600 text-white py-2 px-4 my-4 rounded-md ml-[45%]">ดูเพิ่มเติม</button>
+                </form>
+            </div>
+            {% endfor %}
+        </div>
+
+</div>
+
+{% endblock %}
+

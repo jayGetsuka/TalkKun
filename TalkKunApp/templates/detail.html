@@ -1,0 +1,29 @@
+{% extends 'main.html' %}
+{% block body %}
+{% include 'header.html' %}
+<div class="w-[80%] mx-auto bg-black m-4 rounded-md">
+    <img src="/media/{{ detailQ.image }}" alt="" class="mx-auto max-w-[80%] pt-4 rounded-md drop-shadow-xl">
+    <p class="text-white text-3xl p-6">{{ detailQ.title }}</p>
+    <p class="text-white pb-6 pl-6">{{ detailQ.detail }}</p>
+</div>
+{% for ans in answers %}
+<div class="w-[80%] mx-auto mb-12 bg-black p-6 rounded-md">
+    <p class="text-black py-2 px-4 bg-white rounded-md inline">{{ ans.answer }}</p>
+    <p class="text-white mt-4">แสดงความคิดเห็นจาก {{ ans.user.username}}</p>
+</div>
+{% endfor %}
+<div class="w-[80%] mx-auto mb-12 bg-black p-6 rounded-md">
+    <form action="{% url 'ans' %}" method="post", enctype="multipart/form-data">
+        {% csrf_token %}
+        <input
+                type="text"
+                class="form-control block w-full px-4 py-2 text-xl font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+                placeholder="ข้อความ..."
+                name="answer"
+              />
+        <input type="hidden" name="qid" value={{ detailQ.id }}>
+        <button class="py-2 px-6 bg-blue-600 text-white mt-4 rounded">ตอบ</button>
+    </form>
+</div>
+
+{% endblock %}

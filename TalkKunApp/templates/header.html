@@ -1,0 +1,44 @@
+{% extends 'main.html' %}
+{% block body %}
+
+
+
+<nav class="bg-white border-gray-200 dark:bg-gray-900">
+    <div class="flex flex-wrap justify-between items-center mx-auto max-w-screen-xl px-4 md:px-6 py-2.5">
+        <a href="https://flowbite.com" class="flex items-center">
+            <span class="self-center text-4xl font-semibold whitespace-nowrap dark:text-white">Talk Kun</span>
+        </a>
+        <div class="flex items-center">
+            {% if user.is_authenticated %}
+                <span class="mx-6 text-white">{{ user.username }}</span>
+                <a href="{% url 'logout' %}" class="text-sm font-medium text-blue-600 dark:text-blue-500 hover:underline">Log out</a>
+            {% else %}
+                <a href="{% url 'login' %}" class="text-sm font-medium text-blue-600 dark:text-blue-500 hover:underline">Login</a>
+                <a href="{% url 'register' %}" class="text-sm font-medium text-blue-600 dark:text-blue-500 hover:underline ml-4">Register</a>
+            {% endif %}
+            
+        </div>
+        
+    </div>
+</nav>
+<nav class="bg-gray-50 dark:bg-gray-700">
+    <div class="py-3 px-4 mx-auto max-w-screen-xl md:px-6">
+        <div class="flex items-center">
+            <ul class="flex flex-row mt-0 mr-6 space-x-8 text-sm font-medium">
+                <li>
+                    <a href="{% url 'index' %}" class="text-gray-900 dark:text-white hover:underline" aria-current="page">Home</a>
+                </li>
+                <li>
+                    <a href="{% url 'addQ' %}" class="text-gray-900 dark:text-white hover:underline">Add Question</a>
+                </li>
+                <li>
+                    <a href="{% url 'Qme' %}" class="text-gray-900 dark:text-white hover:underline">Question Me</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+  
+
+{% endblock %}
